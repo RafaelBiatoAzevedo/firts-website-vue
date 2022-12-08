@@ -21,7 +21,7 @@ import NavHome from "./NavHome.vue";
   </header>
 </template>
 
-<style>
+<style scoped>
 nav {
   display: flex;
   flex-direction: row;
