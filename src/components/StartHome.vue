@@ -40,7 +40,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url("@/assets/background3-cyber-security.jpg.jpg");
+  background-image: url("@/assets/background-cyber-security.jpg.jpg");
   background-size: cover;
   height: 60rem;
   padding: 4rem;

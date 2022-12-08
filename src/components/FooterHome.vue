@@ -1,13 +1,17 @@
 <script></script>
 
 <template>
-  <div>
+  <div class="wrapper-main">
     <H2>Contato</H2>
+    <diV class="address"> </diV>
+    <div class="social"></div>
   </div>
 </template>
 
 <style scoped>
-div {
+.wrapper-main {
+  display: flex;
+  flex-direction: row;
   background-color: #000;
   height: 20rem;
   padding: 4rem;
