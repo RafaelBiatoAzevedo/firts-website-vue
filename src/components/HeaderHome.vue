@@ -14,11 +14,11 @@ import Web from "vue-material-design-icons/Web.vue";
       <img alt="logo" src="@/assets/logo.png" />
     </a>
     <nav>
-      <NavHome title="Inicio" />
-      <NavHome title="Soluções" />
-      <NavHome title="Parcerias" />
-      <NavHome title="Sobre a empresa" />
-      <NavHome title="Contato" />
+      <NavHome title="Inicio" link="#start" />
+      <NavHome title="Soluções" link="#solutions" />
+      <NavHome title="Parcerias" link="#partnerShips" />
+      <NavHome title="Sobre a empresa" link="#about" />
+      <NavHome title="Contato" link="#contact" />
     </nav>
 
     <div class="country">

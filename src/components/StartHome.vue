@@ -46,6 +46,7 @@ button:hover {
   background-size: cover;
   height: 60rem;
   padding: 4rem;
+  padding-top: 9rem;
 }
 
 .title-top {

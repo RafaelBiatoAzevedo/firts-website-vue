@@ -1,9 +1,13 @@
 <script setup lang="ts">
-defineProps<{ title: string }>();
+defineProps<{ title: string; link: string }>();
+
+const getEvent = (event: any) => {
+  console.log(event.target.offsetTop);
+};
 </script>
 
 <template>
-  <a>{{ title }}</a>
+  <a @click="getEvent" :href="link">{{ title }}</a>
 </template>
 
 <style scoped>
