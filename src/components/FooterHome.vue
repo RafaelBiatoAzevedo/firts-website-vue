@@ -24,13 +24,19 @@ import GithubIcon from "vue-material-design-icons/Github.vue";
     </diV>
     <h2>Redes Sociais</h2>
     <div class="social">
-      <a>
+      <a
+        href="https://www.instagram.com/rafael_azevedo_55/?hl=pt-br"
+        target="blank"
+      >
         <InstagramIcon :size="40" fillColor="gray" />
       </a>
-      <a>
+      <a
+        href="https://www.linkedin.com/in/rafael-azevedo-530889195/"
+        target="blank"
+      >
         <LinkedinIcon :size="40" fillColor="gray" />
       </a>
-      <a>
+      <a href="https://github.com/RafaelBiatoAzevedo" target="blank">
         <GithubIcon :size="40" fillColor="gray" />
       </a>
     </div>
@@ -73,6 +79,7 @@ p {
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 h2 {
