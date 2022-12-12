@@ -8,15 +8,17 @@ import WhatsappIcon from "vue-material-design-icons/Whatsapp.vue";
 </script>
 
 <template>
-  <div class="wrapper-main">
-    <div class="wrapper-message">
-      <p>Ficou com alguma dúvida ?</p>
-      <p>Fale com gente</p>
+  <a href="https://wa.me/19997426983" target="blank">
+    <div class="wrapper-main">
+      <div class="wrapper-message">
+        <p>Ficou com alguma dúvida ?</p>
+        <p>Fale com gente</p>
+      </div>
+      <div class="wrapper-icon">
+        <WhatsappIcon :size="40" fillColor="#ffffff" />
+      </div>
     </div>
-    <div class="wrapper-icon">
-      <WhatsappIcon :size="40" fillColor="#ffffff" />
-    </div>
-  </div>
+  </a>
 </template>
 
 <style scoped>
@@ -51,5 +53,9 @@ p {
   width: 5rem;
   height: 5rem;
   right: -50px;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
