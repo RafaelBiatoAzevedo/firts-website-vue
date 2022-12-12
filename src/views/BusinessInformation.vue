@@ -36,7 +36,7 @@ const goBack = () => {
         os crimes e as ameaças virtuais. Os hackers se aproveitam das
         vulnerabilidades de nossos dispositivos eletrônicos e das redes que
         utilizamos para realizar ataques que podem gerar prejuízos
-        incalculáveiss
+        incalculáveis.
       </p>
     </div>
   </diV>
