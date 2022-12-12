@@ -1,4 +1,11 @@
-<script></script>
+<script setup lang="ts">
+//@ts-ignore
+import WhatsappIcon from "vue-material-design-icons/Whatsapp.vue";
+
+{
+  WhatsappIcon;
+}
+</script>
 
 <template>
   <div class="wrapper-main">
@@ -6,7 +13,9 @@
       <p>Ficou com alguma dúvida ?</p>
       <p>Fale com gente</p>
     </div>
-    <div class="wrapper-icon"></div>
+    <div class="wrapper-icon">
+      <WhatsappIcon :size="40" fillColor="#ffffff" />
+    </div>
   </div>
 </template>
 
@@ -32,6 +41,9 @@ p {
 }
 
 .wrapper-icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   position: absolute;
   background-color: #25d366;
   border-radius: 100%;

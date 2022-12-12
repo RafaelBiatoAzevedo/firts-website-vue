@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import NavHome from "./NavHome.vue";
+//@ts-ignore
+import Web from "vue-material-design-icons/Web.vue";
+
+{
+  Web;
+}
 </script>
 
 <template>
@@ -16,6 +22,7 @@ import NavHome from "./NavHome.vue";
     </nav>
 
     <div class="country">
+      <Web fillColor="gray" />
       <p>Brasil</p>
     </div>
   </header>
@@ -41,11 +48,14 @@ img {
 
 .country {
   display: flex;
+  align-items: center;
+  border-left: solid gray 0.2px;
+  padding: 2rem 4rem;
+
+  gap: 1rem;
 }
 
 p {
   color: gray;
-  padding: 2rem 4rem;
-  border-left: solid gray 0.2px;
 }
 </style>

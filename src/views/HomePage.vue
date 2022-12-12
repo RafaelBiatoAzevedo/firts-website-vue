@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import HeaderHome from "../components/HeaderHome.vue";
 import StartHome from "../components/StartHome.vue";
+import SolutionsHome from "../components/SolutionsHome.vue";
+import PartnerShips from "../components/PartnerShips.vue";
 import FooterHome from "../components/FooterHome.vue";
 import ModalWhatsapp from "../components/ModalWhatsapp.vue";
 </script>
@@ -9,6 +11,8 @@ import ModalWhatsapp from "../components/ModalWhatsapp.vue";
   <div class="wrapper-main">
     <HeaderHome />
     <StartHome />
+    <SolutionsHome />
+    <PartnerShips />
     <FooterHome />
     <div class="wrapper-fixed">
       <ModalWhatsapp />

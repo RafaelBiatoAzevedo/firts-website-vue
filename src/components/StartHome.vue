@@ -1,4 +1,6 @@
-<script></script>
+<script setup lang="ts">
+import { RouterLink } from "vue-router";
+</script>
 
 <template>
   <div class="main">
@@ -7,7 +9,9 @@
       <p>Cuidamos dos seus dados como se fosse nosso.</p>
     </div>
 
-    <button>Saber mais</button>
+    <RouterLink to="/businessInformation">
+      <button>Saiba mais</button>
+    </RouterLink>
   </div>
 </template>
 
