@@ -60,7 +60,7 @@ const goBack = () => {
 
 p,
 h2 {
-  color: #fff;
+  color: gray;
   font-size: 2rem;
 }
 
