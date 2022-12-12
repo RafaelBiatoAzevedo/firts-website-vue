@@ -4,10 +4,14 @@
   <div class="wrapper-main">
     <H2>Nossos Parceiros</H2>
     <div class="wrapper-links">
-      <a class="others-link">
+      <a class="others-link" href="https://www.scae.adm.br" target="blank">
         <img alt="logo scae" src="@/assets/logoScae.png" />
       </a>
-      <a class="link-top">
+      <a
+        class="link-top"
+        href="https://portifoliorafaelazevedo.netlify.app/"
+        target="blank"
+      >
         <img
           class="azevedo-logo"
           alt="logo azevedo digital"
@@ -45,6 +49,7 @@ h2 {
 }
 
 a {
+  cursor: pointer;
   height: 14rem;
   width: 14rem;
   align-items: center;
