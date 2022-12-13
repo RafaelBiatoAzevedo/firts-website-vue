@@ -17,7 +17,7 @@ import Web from "vue-material-design-icons/Web.vue";
       <NavHome title="Inicio" link="#start" />
       <NavHome title="Soluções" link="#solutions" />
       <NavHome title="Parcerias" link="#partnerShips" />
-      <NavHome title="Sobre a empresa" link="#about" />
+      <!-- <NavHome title="Sobre a empresa" link="#about" /> -->
       <NavHome title="Contato" link="#contact" />
     </nav>
 

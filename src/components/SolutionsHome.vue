@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ISolutions } from "@/interfaces";
+import type { ISolutions } from "@/interfaces/ISolutions";
 
 import CartSolution from "./CartSolution.vue";
 

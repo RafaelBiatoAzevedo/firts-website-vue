@@ -10,8 +10,7 @@ const goBack = () => {
 <template>
   <diV class="wrapper-main">
     <button @click="goBack">
-      <ArrowLeft size="25" fillColor="#000" />
-      Voltar
+      <ArrowLeft size="25" fillColor="#000" /> Voltar
     </button>
     <div class="wrapper-information">
       <h2>Nossa magia</h2>
@@ -43,19 +42,21 @@ const goBack = () => {
 </template>
 <style scoped>
 .wrapper-main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   background-color: #141414;
   padding: 3rem;
   min-height: 100vh;
 }
-
 .wrapper-information {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 2rem 20rem;
 
   gap: 2rem;
+  width: 80%;
 }
 
 p,
@@ -75,6 +76,7 @@ p {
 
 button {
   align-items: center;
+  align-self: flex-start;
   display: flex;
   justify-content: center;
   border: solid gray 1px;

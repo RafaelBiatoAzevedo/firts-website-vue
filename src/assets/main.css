@@ -10,3 +10,28 @@ html {
   font-size: 14px;
 }
 
+@media(max-width: 1440px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media(max-width: 800px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media(max-width: 600px) {
+  html {
+    font-size: 6px;
+  }
+}
+
+  /* medium: '1440px',
+    small: '1280px',
+    tablet: '800px',
+    celphone: '600px', */
+
+
+

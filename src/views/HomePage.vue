@@ -12,18 +12,10 @@ import ModalWhatsapp from "../components/ModalWhatsapp.vue";
     <div class="top-menu">
       <HeaderHome />
     </div>
-    <div id="start">
-      <StartHome />
-    </div>
-    <div id="solutions">
-      <SolutionsHome />
-    </div>
-    <div id="partnerShips">
-      <PartnerShips />
-    </div>
-    <div id="contact">
-      <FooterHome />
-    </div>
+    <StartHome id="start" />
+    <SolutionsHome id="solutions" />
+    <PartnerShips id="partnerShips" />
+    <FooterHome id="contact" />
     <div class="wrapper-fixed">
       <ModalWhatsapp />
     </div>
