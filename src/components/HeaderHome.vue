@@ -2,10 +2,6 @@
 import NavHome from "./NavHome.vue";
 //@ts-ignore
 import Web from "vue-material-design-icons/Web.vue";
-
-{
-  Web;
-}
 </script>
 
 <template>

@@ -74,7 +74,7 @@ const solutions: ISolutions[] = [
   display: flex;
   flex-direction: column;
   background-color: #181818;
-  height: 60rem;
+  min-height: 50rem;
 }
 
 .wrapper-carts {
@@ -82,6 +82,7 @@ const solutions: ISolutions[] = [
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   height: 100%;
+  flex: 1;
   row-gap: 3rem;
   column-gap: 3rem;
   padding: 3rem;
@@ -92,5 +93,17 @@ h2 {
   color: gray;
   font-size: 3.5rem;
   padding: 2rem;
+}
+
+@media (max-width: 800px) {
+  h2 {
+    padding: 1rem;
+  }
+  .wrapper-carts {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.5rem;
+    column-gap: 1.5rem;
+    padding: 1.5rem;
+  }
 }
 </style>

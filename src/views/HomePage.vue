@@ -8,7 +8,7 @@ import ModalWhatsapp from "../components/ModalWhatsapp.vue";
 </script>
 
 <template>
-  <div class="wrapper-main">
+  <div class="wrapper-home">
     <div class="top-menu">
       <HeaderHome />
     </div>
@@ -23,6 +23,9 @@ import ModalWhatsapp from "../components/ModalWhatsapp.vue";
 </template>
 
 <style scoped>
+.wrapper-home {
+  width: 100%;
+}
 .top-menu {
   position: fixed;
   width: 100%;
@@ -32,5 +35,26 @@ import ModalWhatsapp from "../components/ModalWhatsapp.vue";
   position: fixed;
   bottom: 30px;
   right: 80px;
+}
+
+@media (max-width: 1440px) {
+  .wrapper-fixed {
+    bottom: 25px;
+    right: 70px;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper-fixed {
+    bottom: 20px;
+    right: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper-fixed {
+    bottom: 20px;
+    right: 50px;
+  }
 }
 </style>

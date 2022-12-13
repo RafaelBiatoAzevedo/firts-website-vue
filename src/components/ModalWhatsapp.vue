@@ -58,4 +58,22 @@ p {
 a {
   text-decoration: none;
 }
+
+@media (max-width: 1440px) {
+  .wrapper-icon {
+    right: -40px;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapper-icon {
+    right: -30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper-icon {
+    right: -20px;
+  }
+}
 </style>

@@ -70,11 +70,10 @@ p {
 }
 .social {
   display: flex;
-  flex-direction: column;
   flex: 1;
-  padding: 0 4rem;
+  padding: 3rem;
 
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 a {
@@ -85,5 +84,22 @@ a {
 h2 {
   font-size: 2rem;
   color: gray;
+}
+
+@media (max-width: 800px) {
+  .wrapper-main {
+    height: 20rem;
+    padding: 1rem;
+
+    gap: 1rem;
+  }
+
+  .social {
+    padding: 1rem;
+  }
+
+  .address {
+    padding: 3rem 2rem;
+  }
 }
 </style>
