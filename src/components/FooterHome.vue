@@ -88,8 +88,9 @@ h2 {
 
 @media (max-width: 800px) {
   .wrapper-main {
-    height: 20rem;
-    padding: 1rem;
+    height: auto;
+    padding: 2rem;
+    flex-direction: column;
 
     gap: 1rem;
   }
@@ -99,7 +100,8 @@ h2 {
   }
 
   .address {
-    padding: 3rem 2rem;
+    padding: 1rem 2rem;
+    border-right: none;
   }
 }
 </style>

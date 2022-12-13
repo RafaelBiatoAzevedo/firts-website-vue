@@ -54,4 +54,10 @@ img {
 p {
   color: gray;
 }
+
+@media (max-width: 800px) {
+  .country {
+    padding: 1rem;
+  }
+}
 </style>
