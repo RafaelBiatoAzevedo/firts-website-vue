@@ -2,17 +2,41 @@
 import router from "@/router";
 //@ts-ignore
 import ArrowLeft from "vue-material-design-icons/ArrowLeft.vue";
+import { ref } from "vue";
 
 const goBack = () => {
   router.push("/");
 };
+
+type TCoordenate = {
+  x: number;
+  y: number;
+};
+
+const coordenates: TCoordenate[] = [];
+
+const imgLeft = ref("");
+const imgTop = ref("");
+
+function onClick(e: any) {
+  imgLeft.value = `${e.clientX}px`;
+  imgTop.value = `${e.clientY}px`;
+
+  const newCoordanates: TCoordenate = {
+    x: e.clientX,
+    y: e.clientY,
+  };
+
+  coordenates.push(newCoordanates);
+  console.log(coordenates);
+}
 </script>
 <template>
-  <diV class="wrapper-main">
+  <div class="wrapper-main">
     <button @click="goBack">
       <ArrowLeft size="25" fillColor="#000" /> Voltar
     </button>
-    <div class="wrapper-information">
+    <!-- <div class="wrapper-information">
       <h2>Nossa magia</h2>
 
       <p>
@@ -37,10 +61,23 @@ const goBack = () => {
         utilizamos para realizar ataques que podem gerar prejuízos
         incalculáveis.
       </p>
+    </div> -->
+    <p>{{ `x = ${imgLeft}   ,   y = ${imgTop}` }}</p>
+    <div class="wrapper-plant" @click="onClick">
+      <img src="@/assets/plantTest.png" alt="teste img" />
     </div>
-  </diV>
+  </div>
 </template>
 <style scoped>
+.wrapper-plant {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 70%;
+
+  border: solid red;
+}
 .wrapper-main {
   align-items: center;
   display: flex;
