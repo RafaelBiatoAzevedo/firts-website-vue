@@ -7,8 +7,11 @@
       <p>Cuidamos dos seus dados como se fosse nosso.</p>
     </div>
 
-    <routerLink to="/businessInformation">
-      <button>Saiba mais</button>
+    <routerLink to="/create-map">
+      <button>Cadastrar</button>
+    </routerLink>
+    <routerLink to="/view-map">
+      <button>Visualizar</button>
     </routerLink>
   </div>
 </template>

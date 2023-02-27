@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/HomePage.vue";
-import BusinessInformation from "../views/BusinessInformation.vue";
+import CreateMap from "../views/CreateMap.vue";
+import ViewMap from "../views/ViewMap.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +12,14 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: "/businessInformation",
-      name: "BusinessInformation",
-      component: BusinessInformation,
+      path: "/create-map",
+      name: "CreateMap",
+      component: CreateMap,
+    },
+    {
+      path: "/view-map",
+      name: "ViewMap",
+      component: ViewMap,
     },
   ],
 });
