@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import router from "@/router";
-import type { TCoordinatesLot, TLot } from "@/main";
-import { ref } from "vue";
+import type { TCoordinatesLot, TDimensionsBase, TLot } from "@/main";
+import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
@@ -12,12 +12,23 @@ const goBack = () => {
 
 const VALUE_AJUST_COORDINATE = 14;
 
+const STATUS = [
+  {
+    name: "available",
+    translate: "Disponível",
+    color: "#36962e",
+  },
+  { name: "sold", translate: "Vendido", color: "#fb6340" },
+  { name: "reserved", translate: "Reservado", color: "#d7191c" },
+];
+
 type TModalCoordinate = {
   x: number;
   y: number;
 };
 
 const lots = ref<TLot[]>(store.getters.lots);
+const dimensionsBase = ref<TDimensionsBase>(store.getters.dimensionsBase);
 const coordinatesLots = ref<TCoordinatesLot[]>([
   ...store.getters.coordinatesLots,
 ]);
@@ -93,11 +104,59 @@ function savePoint() {
     console.log("Lot not found");
   }
 }
+
+onMounted(() => {
+  const dimensionsBaseLoad = {
+    height: document.getElementById("wrapperPlant")?.clientHeight || 0,
+    width: document.getElementById("wrapperPlant")?.clientWidth || 0,
+  };
+
+  console.log("antes", dimensionsBase);
+  console.log("depois", dimensionsBaseLoad);
+
+  if (dimensionsBaseLoad.height > dimensionsBase.value.height) {
+    coordinatesLots.value = coordinatesLots.value.map((coord) => ({
+      ...coord,
+      y:
+        coord.y + (dimensionsBaseLoad.height - dimensionsBase.value.height) / 2,
+    }));
+  }
+
+  if (dimensionsBaseLoad.height < dimensionsBase.value.height) {
+    coordinatesLots.value = coordinatesLots.value.map((coord) => ({
+      ...coord,
+      y:
+        coord.y - (dimensionsBase.value.height - dimensionsBaseLoad.height) / 2,
+    }));
+  }
+
+  if (dimensionsBaseLoad.width > dimensionsBase.value.width) {
+    coordinatesLots.value = coordinatesLots.value.map((coord) => ({
+      ...coord,
+      x: coord.x + (dimensionsBaseLoad.width - dimensionsBase.value.width) / 2,
+    }));
+  }
+
+  if (dimensionsBaseLoad.width < dimensionsBase.value.width) {
+    coordinatesLots.value = coordinatesLots.value.map((coord) => ({
+      ...coord,
+      x: coord.x - (dimensionsBase.value.width - dimensionsBaseLoad.width) / 2,
+    }));
+  }
+});
 </script>
 <template>
   <div class="wrapper-main">
     <div class="wrapper-plant" id="wrapperPlant" @click="addPoint">
-      <div v-if="openModal" class="modal">
+      <div
+        v-if="openModal"
+        id="selectModal"
+        v-bind:style="{
+          left: `${modalCoordinates.x - 155}px`,
+          top: `${modalCoordinates.y + 30}px`,
+        }"
+        class="modal"
+      >
         <label class="label-select">Selecione o lote</label>
         <select name="select-lots" id="selectLots">
           <option value="" class="option-select-lot">
@@ -121,7 +180,13 @@ function savePoint() {
       <div
         v-for="(coord, index) in coordinatesLots"
         class="point-absolute"
-        v-bind:style="{ left: `${coord.x}px`, top: `${coord.y}px` }"
+        v-bind:style="{
+          left: `${coord.x}px`,
+          top: `${coord.y}px`,
+          backgroundColor: STATUS.find(
+            (status) => status.name === coord.lot.status
+          )?.color,
+        }"
         :key="index"
       >
         <p class="label-point">{{ coord.lot.tag }}</p>
@@ -135,7 +200,6 @@ function savePoint() {
 </template>
 <style scoped>
 .point-absolute {
-  background-color: orange;
   position: absolute;
   border-radius: 100%;
   padding: 0.4rem 0.2rem;
@@ -152,6 +216,16 @@ function savePoint() {
 
   gap: 1rem;
   z-index: 1000;
+}
+
+.modal::after {
+  content: "";
+  position: absolute;
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: white;
+  top: -6px;
+  transform: rotate(45deg);
 }
 
 .wrapper-buttons-modal {
@@ -222,6 +296,6 @@ button {
 .label-point {
   font-size: 1rem;
   font-weight: bold;
-  color: gray;
+  color: black;
 }
 </style>
