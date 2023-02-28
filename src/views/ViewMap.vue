@@ -152,7 +152,6 @@ h3 {
   border-radius: 100%;
   padding: 0.4rem 0.2rem;
   cursor: pointer;
-  border: none;
 }
 .wrapper-buttons {
   align-items: center;

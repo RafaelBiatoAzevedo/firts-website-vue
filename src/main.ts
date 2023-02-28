@@ -60,7 +60,7 @@ const store = createStore<TState>({
         },
         {
           _id: "lotScae6",
-          name: "Lote 4 Scae",
+          name: "Lote 6 Scae",
           tag: "L-6",
           status: "reserved",
         },

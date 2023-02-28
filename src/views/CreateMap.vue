@@ -11,6 +11,8 @@ const goBack = () => {
 };
 
 const VALUE_AJUST_COORDINATE = 14;
+const VALUE_AJUST_POINTER_MODAL_WIDTH = 155;
+const VALUE_AJUST_POINTER_MODAL_HEIGHT = 30;
 
 const STATUS = [
   {
@@ -58,6 +60,14 @@ function saveData() {
   store.dispatch("saveDimensionBase", { coordinatesLots, dimensionsBase });
 
   goBack();
+}
+
+function removePoint(lot: TLot) {
+  openModal.value = false;
+  coordinatesLots.value = coordinatesLots.value.filter(
+    (lotC) => lotC.lot._id !== lot._id
+  );
+  refreshLotsFiltereds();
 }
 
 function addPoint(e: any) {
@@ -150,12 +160,12 @@ onMounted(() => {
     <div class="wrapper-plant" id="wrapperPlant" @click="addPoint">
       <div
         v-if="openModal"
+        class="modal"
         id="selectModal"
         v-bind:style="{
-          left: `${modalCoordinates.x - 155}px`,
-          top: `${modalCoordinates.y + 30}px`,
+          left: `${modalCoordinates.x - VALUE_AJUST_POINTER_MODAL_WIDTH}px`,
+          top: `${modalCoordinates.y + VALUE_AJUST_POINTER_MODAL_HEIGHT}px`,
         }"
-        class="modal"
       >
         <label class="label-select">Selecione o lote</label>
         <select name="select-lots" id="selectLots">
@@ -172,12 +182,16 @@ onMounted(() => {
           </option>
         </select>
         <div class="wrapper-buttons-modal">
-          <button class="error" @click="rejectPoint">Cancelar</button>
-          <button class="success" @click="savePoint">Confirmar</button>
+          <button class="error classic-button" @click="rejectPoint">
+            Cancelar
+          </button>
+          <button class="success classic-button" @click="savePoint">
+            Confirmar
+          </button>
         </div>
       </div>
       <img src="@/assets/plantTest.png" alt="teste img" />
-      <div
+      <button
         v-for="(coord, index) in coordinatesLots"
         class="point-absolute"
         v-bind:style="{
@@ -188,13 +202,14 @@ onMounted(() => {
           )?.color,
         }"
         :key="index"
+        @click="() => removePoint(coord.lot)"
       >
         <p class="label-point">{{ coord.lot.tag }}</p>
-      </div>
+      </button>
     </div>
     <div class="wrapper-buttons">
-      <button class="error" @click="goBack">Voltar</button>
-      <button class="success" @click="saveData">Salvar</button>
+      <button class="error classic-button" @click="goBack">Voltar</button>
+      <button class="success classic-button" @click="saveData">Salvar</button>
     </div>
   </div>
 </template>
@@ -203,8 +218,8 @@ onMounted(() => {
   position: absolute;
   border-radius: 100%;
   padding: 0.4rem 0.2rem;
+  cursor: pointer;
 }
-
 .modal {
   align-items: center;
   display: flex;
@@ -221,10 +236,10 @@ onMounted(() => {
 .modal::after {
   content: "";
   position: absolute;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 1.2rem;
+  height: 1.2rem;
   background-color: white;
-  top: -6px;
+  top: -0.4rem;
   transform: rotate(45deg);
 }
 
@@ -252,7 +267,6 @@ select {
   gap: 3rem;
   padding: 3rem;
 }
-
 .wrapper-plant {
   background-color: #141414;
   align-items: center;
@@ -267,7 +281,7 @@ select {
   background-color: #141414;
 }
 
-button {
+.classic-button {
   align-items: center;
   align-self: flex-start;
   display: flex;
