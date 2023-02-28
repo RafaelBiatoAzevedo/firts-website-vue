@@ -4,6 +4,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/main.css";
+import type { ICommit } from "./interfaces/ICommit";
 
 export type TLot = {
   _id: string;
@@ -64,6 +65,12 @@ const store = createStore<TState>({
           tag: "L-6",
           status: "reserved",
         },
+        {
+          _id: "mansionAzevedoSCAE",
+          name: "Mansão Azevedo",
+          tag: "M-A1",
+          status: "reserved",
+        },
       ],
     };
   },
@@ -73,7 +80,7 @@ const store = createStore<TState>({
       return state.dimensionsBase;
     },
 
-    lots: (state: { lots: any }) => {
+    lots: (state: { lots: TLot[] }) => {
       return state.lots;
     },
 
@@ -97,7 +104,7 @@ const store = createStore<TState>({
 
   actions: {
     saveDimensionBase(
-      { commit }: any,
+      { commit }: { commit: ICommit },
       data: {
         dimensionsBase: TDimensionsBase;
         coordinatesLots: TCoordinatesLot;

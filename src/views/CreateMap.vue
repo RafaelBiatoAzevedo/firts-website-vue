@@ -255,10 +255,10 @@ onMounted(() => {
 }
 
 select {
-  width: 17rem;
+  width: 19rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .wrapper-buttons {
   align-items: center;
