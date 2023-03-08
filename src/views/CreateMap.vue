@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from "@/router";
-import type { TCoordinatesLot, TDimensionsBase, TLot } from "@/main";
+import type { TBlock, TCoordinatesLot, TDimensionsBase, TLot } from "@/main";
 import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 
@@ -29,16 +29,18 @@ type TModalCoordinate = {
   y: number;
 };
 
-const lots = ref<TLot[]>(store.getters.lots);
+const blocks = ref<TBlock[]>(store.getters.blocks);
 const dimensionsBase = ref<TDimensionsBase>(store.getters.dimensionsBase);
 const coordinatesLots = ref<TCoordinatesLot[]>([
   ...store.getters.coordinatesLots,
 ]);
-const lotsFiltereds = ref<TLot[]>(
-  lots.value.filter(
-    (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
-  )
-);
+
+const blockSelected = ref<TBlock | undefined>(undefined);
+
+const lotsFiltereds = ref<TLot[] | undefined>(undefined);
+// lots.value.filter(
+//   (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
+// )
 const openModal = ref<boolean>(false);
 const modalCoordinates = ref<TModalCoordinate>({
   x: 0,
@@ -46,8 +48,14 @@ const modalCoordinates = ref<TModalCoordinate>({
 });
 
 function refreshLotsFiltereds() {
-  lotsFiltereds.value = lots.value.filter(
-    (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
+  // lotsFiltereds.value = lots.value.filter(
+  //   (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
+  // );
+}
+
+function handleSelectBlock(blockId: string) {
+  blockSelected.value = blocks.value.filter(
+    (block: TBlock) => block._id == blockId
   );
 }
 
@@ -93,25 +101,29 @@ function savePoint() {
   //@ts-ignore
   const value = selectElement.options[selectElement.selectedIndex].value;
 
-  const lotFound = lots.value.find((lot: TLot) => lot._id === value);
+  if (blockSelected.value) {
+    const lotFound = blockSelected.value.lots.find(
+      (lot: TLot) => lot._id === value
+    );
 
-  if (lotFound) {
-    //setTimeout necessary to not conflict with click on the map.
-    setTimeout(() => {
-      const newCoordanates = {
-        lot: lotFound,
-        x: modalCoordinates.value.x,
-        y: modalCoordinates.value.y,
-      };
+    if (lotFound) {
+      //setTimeout necessary to not conflict with click on the map.
+      setTimeout(() => {
+        const newCoordanates = {
+          lot: lotFound,
+          x: modalCoordinates.value.x,
+          y: modalCoordinates.value.y,
+        };
 
-      coordinatesLots.value.push(newCoordanates);
-      refreshLotsFiltereds();
+        coordinatesLots.value.push(newCoordanates);
+        refreshLotsFiltereds();
 
-      openModal.value = false;
-    }, 100);
-  } else {
-    //Put warning SCAE alert here.
-    console.log("Lot not found");
+        openModal.value = false;
+      }, 100);
+    } else {
+      //Put warning SCAE alert here.
+      console.log("Lot not found");
+    }
   }
 }
 
@@ -120,9 +132,6 @@ onMounted(() => {
     height: document.getElementById("wrapperPlant")?.clientHeight || 0,
     width: document.getElementById("wrapperPlant")?.clientWidth || 0,
   };
-
-  console.log("antes", dimensionsBase);
-  console.log("depois", dimensionsBaseLoad);
 
   if (dimensionsBaseLoad.height > dimensionsBase.value.height) {
     coordinatesLots.value = coordinatesLots.value.map((coord) => ({
@@ -169,12 +178,29 @@ onMounted(() => {
       >
         <label class="label-select">Selecione o lote</label>
         <select name="select-lots" id="selectLots">
+          <option value="" class="option-select-block">
+            Por favor, selecione uma quadra
+          </option>
+          <option
+            class="option-select-block"
+            v-for="block in blocks"
+            v-bind:value="block._id"
+            :key="block._id"
+          >
+            {{ block.name }}
+          </option>
+        </select>
+        <select
+          v-if="blockSelected !== undefined"
+          name="select-lots"
+          id="selectLots"
+        >
           <option value="" class="option-select-lot">
             Por favor, selecione um lote
           </option>
           <option
             class="option-select-lot"
-            v-for="lot in lotsFiltereds"
+            v-for="lot in blockSelected.lots"
             v-bind:value="lot._id"
             :key="lot._id"
           >
@@ -190,7 +216,7 @@ onMounted(() => {
           </button>
         </div>
       </div>
-      <img src="@/assets/plantTest.png" alt="teste img" />
+      <img src="@/assets/mapLots.jpeg" alt="teste img" />
       <button
         v-for="(coord, index) in coordinatesLots"
         class="point-absolute"
@@ -255,7 +281,7 @@ onMounted(() => {
 }
 
 select {
-  width: 19rem;
+  width: 22rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
   font-size: 1.2rem;
@@ -273,6 +299,7 @@ select {
   display: flex;
   justify-content: center;
   flex: 1;
+  height: 80%;
   position: relative;
 }
 .wrapper-main {

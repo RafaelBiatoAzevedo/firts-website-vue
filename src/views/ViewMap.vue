@@ -30,9 +30,6 @@ onMounted(() => {
     width: document.getElementById("wrapperPlant")?.clientWidth || 0,
   };
 
-  console.log("antes", dimensionsBase);
-  console.log("depois", dimensionsBaseLoad);
-
   if (dimensionsBaseLoad.height > dimensionsBase.value.height) {
     coordinatesLots.value = coordinatesLots.value.map((coord) => ({
       ...coord,
@@ -88,7 +85,7 @@ function navigateFor(lot: TLot) {
           </p>
         </div>
       </div>
-      <img src="@/assets/plantTest.png" alt="teste img" />
+      <img src="@/assets/mapLots.jpeg" alt="teste img" />
       <button
         v-for="(coord, index) in coordinatesLots"
         class="point-absolute"

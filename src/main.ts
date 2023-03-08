@@ -13,6 +13,13 @@ export type TLot = {
   status: "available" | "sold" | "reserved";
 };
 
+export type TBlock = {
+  _id: string;
+  name: string;
+  tag: string;
+  lots: TLot[];
+};
+
 export type TDimensionsBase = {
   width: number;
   height: number;
@@ -27,7 +34,7 @@ export type TCoordinatesLot = {
 type TState = {
   dimensionsBase: TDimensionsBase;
   coordinatesLots: TCoordinatesLot[];
-  lots: TLot[];
+  blocks: TBlock[];
 };
 
 const store = createStore<TState>({
@@ -38,38 +45,92 @@ const store = createStore<TState>({
         height: 0,
       },
       coordinatesLots: [],
-      lots: [
+      blocks: [
         {
-          _id: "lotScae1",
-          name: "Lote 1 Scae",
-          tag: "L-1",
-          status: "available",
+          _id: "blockScae01",
+          name: "Quadra 01",
+          tag: "Q-01",
+          lots: [
+            {
+              _id: "block01lotScae1",
+              name: "Lote 1 Scae",
+              tag: "L-1",
+              status: "available",
+            },
+            {
+              _id: "block01lotScae2",
+              name: "Lote 2 Scae",
+              tag: "L-2",
+              status: "available",
+            },
+            {
+              _id: "block01lotScae3",
+              name: "Lote 3 Scae",
+              tag: "L-3",
+              status: "sold",
+            },
+            {
+              _id: "block01lotScae4",
+              name: "Lote 4 Scae",
+              tag: "L-4",
+              status: "sold",
+            },
+            {
+              _id: "block01lotScae5",
+              name: "Lote 5 Scae",
+              tag: "L-5",
+              status: "reserved",
+            },
+            {
+              _id: "block01lotScae6",
+              name: "Lote 6 Scae",
+              tag: "L-6",
+              status: "reserved",
+            },
+          ] as TLot[],
         },
         {
-          _id: "lotScae2",
-          name: "Lote 2 Scae",
-          tag: "L-2",
-          status: "available",
-        },
-        { _id: "lotScae3", name: "Lote 3 Scae", tag: "L-3", status: "sold" },
-        { _id: "lotScae4", name: "Lote 4 Scae", tag: "L-4", status: "sold" },
-        {
-          _id: "lotScae5",
-          name: "Lote 5 Scae",
-          tag: "L-5",
-          status: "reserved",
-        },
-        {
-          _id: "lotScae6",
-          name: "Lote 6 Scae",
-          tag: "L-6",
-          status: "reserved",
-        },
-        {
-          _id: "mansionAzevedoSCAE",
-          name: "Mansão Azevedo",
-          tag: "M-A1",
-          status: "reserved",
+          _id: "blockScae02",
+          name: "Quadra 02",
+          tag: "Q-02",
+          lots: [
+            {
+              _id: "block02lotScae1",
+              name: "Lote 1 Scae",
+              tag: "L-1",
+              status: "available",
+            },
+            {
+              _id: "block02lotScae2",
+              name: "Lote 2 Scae",
+              tag: "L-2",
+              status: "available",
+            },
+            {
+              _id: "block02lotScae3",
+              name: "Lote 3 Scae",
+              tag: "L-3",
+              status: "sold",
+            },
+            {
+              _id: "block02lotScae4",
+              name: "Lote 4 Scae",
+              tag: "L-4",
+              status: "sold",
+            },
+            {
+              _id: "block02lotScae5",
+              name: "Lote 5 Scae",
+              tag: "L-5",
+              status: "reserved",
+            },
+            {
+              _id: "block02lotScae6",
+              name: "Lote 6 Scae",
+              tag: "L-6",
+              status: "reserved",
+            },
+          ] as TLot[],
         },
       ],
     };
@@ -80,8 +141,8 @@ const store = createStore<TState>({
       return state.dimensionsBase;
     },
 
-    lots: (state: { lots: TLot[] }) => {
-      return state.lots;
+    blocks: (state: { blocks: TBlock[] }) => {
+      return state.blocks;
     },
 
     coordinatesLots: (state: { coordinatesLots: TCoordinatesLot[] }) => {
