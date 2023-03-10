@@ -38,9 +38,7 @@ const coordinatesLots = ref<TCoordinatesLot[]>([
 const blockSelected = ref<TBlock | undefined>(undefined);
 
 const lotsFiltereds = ref<TLot[] | undefined>(undefined);
-// lots.value.filter(
-//   (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
-// )
+
 const openModal = ref<boolean>(false);
 const modalCoordinates = ref<TModalCoordinate>({
   x: 0,
@@ -48,15 +46,19 @@ const modalCoordinates = ref<TModalCoordinate>({
 });
 
 function refreshLotsFiltereds() {
-  // lotsFiltereds.value = lots.value.filter(
-  //   (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
-  // );
+  lotsFiltereds.value = blockSelected.value?.lots.filter(
+    (lot) => !coordinatesLots.value.some((cLot) => cLot.lot._id === lot._id)
+  );
 }
 
-function handleSelectBlock(blockId: string) {
-  blockSelected.value = blocks.value.filter(
+function handleSelectBlock(e: any) {
+  const blockId = e.target.value;
+
+  blockSelected.value = blocks.value.find(
     (block: TBlock) => block._id == blockId
   );
+
+  refreshLotsFiltereds();
 }
 
 function saveData() {
@@ -176,8 +178,12 @@ onMounted(() => {
           top: `${modalCoordinates.y + VALUE_AJUST_POINTER_MODAL_HEIGHT}px`,
         }"
       >
-        <label class="label-select">Selecione o lote</label>
-        <select name="select-lots" id="selectLots">
+        <h3 class="label-select">Selecione o lote</h3>
+        <select
+          name="select-block"
+          id="selectBlock"
+          @change="handleSelectBlock"
+        >
           <option value="" class="option-select-block">
             Por favor, selecione uma quadra
           </option>
@@ -200,7 +206,7 @@ onMounted(() => {
           </option>
           <option
             class="option-select-lot"
-            v-for="lot in blockSelected.lots"
+            v-for="lot in lotsFiltereds"
             v-bind:value="lot._id"
             :key="lot._id"
           >
