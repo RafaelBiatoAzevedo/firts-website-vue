@@ -77,6 +77,7 @@ function removePoint(lot: TLot) {
   coordinatesLots.value = coordinatesLots.value.filter(
     (lotC) => lotC.lot._id !== lot._id
   );
+  blockSelected.value = undefined;
   refreshLotsFiltereds();
 }
 
@@ -95,6 +96,7 @@ function rejectPoint() {
   setTimeout(() => {
     openModal.value = false;
     modalCoordinates.value = { x: 0, y: 0 };
+    blockSelected.value = undefined;
   }, 100);
 }
 
@@ -118,6 +120,8 @@ function savePoint() {
         };
 
         coordinatesLots.value.push(newCoordanates);
+        blockSelected.value = undefined;
+
         refreshLotsFiltereds();
 
         openModal.value = false;
